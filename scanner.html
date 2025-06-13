@@ -13,7 +13,7 @@
   <p>This page will scan 1,000+ stocks and rank the best buys using live data.</p>
   <div id="scannerResults">Loading top picks...</div>
   <script>
-    fetch('https://YOUR_RENDER_BACKEND_URL/api/top-picks')
+    fetch('https://tradingmax-1.onrender.com/api/top-picks')
       .then(res => res.json())
       .then(data => {
         const div = document.getElementById('scannerResults');
@@ -21,6 +21,9 @@
           <div style="margin:20px 0; padding:10px; border:1px solid #ccc;">
             <strong>${stock.symbol}</strong> - ${stock.price} - Signal: ${stock.signal}
           </div>`).join('');
+      })
+      .catch(() => {
+        document.getElementById('scannerResults').innerText = 'Failed to load live scan data.';
       });
   </script>
 </section>

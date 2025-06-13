@@ -17,13 +17,16 @@
 <script>
   function searchStock() {
     const ticker = document.getElementById('ticker').value;
-    fetch('https://YOUR_RENDER_BACKEND_URL/api/price/' + ticker)
+    fetch('https://tradingmax-1.onrender.com/api/price/' + ticker)
       .then(res => res.json())
       .then(data => {
         document.getElementById('stockResult').innerHTML = `
           <h2>${ticker.toUpperCase()}</h2>
           <p>Price: ${data.last.price}</p>
         `;
+      })
+      .catch(() => {
+        document.getElementById('stockResult').innerText = 'Failed to fetch live price.';
       });
   }
 </script>
